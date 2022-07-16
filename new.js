@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -45,8 +46,11 @@ app.post("/compose",(req,res)=>{
 app.get("/author",(req,res)=>{
     res.render("author");
 })
+app.get("/post",(req,res)=>{
+    res.render("post",{author:"author",title:"title",poster:"post"});
+})
 
-app.get("/posts/:postId", function(req, res){
+app.get("/post/:postId", function(req, res){
 
   const requestedPostId = req.params.postId;
 
@@ -54,7 +58,7 @@ app.get("/posts/:postId", function(req, res){
       res.render("post", {
         author:post.author,
         title: post.title,
-        poster: post.content
+        poster: post.poster
       });
     });
   });

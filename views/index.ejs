@@ -13,7 +13,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="assets/css/mediumish.css" rel="stylesheet">
+<link href="/assets/css/mediumish.css" rel="stylesheet">
 </head>
 <body>
 
@@ -36,7 +36,7 @@
 			<a class="nav-link" href="/">Stories <span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="/posts">Post</a>
+			<a class="nav-link" href="/post">Post</a>
 			</li>
 			<li class="nav-item">
 			<a class="nav-link" href="/author">Author</a>
@@ -117,7 +117,7 @@
 				</div>
 				<div class="col-md-7">
 					<div class="card-block">
-						<h2 class="card-title"><a href="/posts/<%=post._id%>"><%=post.title  %> </a></h2>
+						<h2 class="card-title"><a href="/post/<%=post._id%>"><%=post.title  %> </a></h2>
 						<h4 class="card-text"><%=post.poster.substring(0, 25) + " ..." %></h4>
 						<div class="metafooter">
 							<div class="wrapfooter">
