@@ -24,27 +24,43 @@ const blogSchema = {
 }
 
 const Post = mongoose.model("Post", blogSchema);
+const Line = mongoose.model("line", blogSchema);
 
 app.get("/",(req,res)=>{
   Post.find({}, function(err, posts){
-    res.render("index", {
-      posts: posts
-      });
+    Line.find({}, function(err,lines){
+      res.render("index",{lines:lines,posts:posts})
+    })
   });
-})
+});
 
 app.post("/compose",(req,res)=>{
   const post = new Post({
     author:req.body.authorNameR,
     title: req.body.postTitleR,
-    poster: req.body.postBodyR
+    poster: req.body.postBodyR,
+    date: new Date()
   });
    post.save();
+  res.redirect("/")
+
+ 
+})
+
+app.post("/composeLine",(req,res)=>{
+  const line = new Line({
+    author:req.body.authorLine,
+    poster:req.body.bodyLine
+  });
+  line.save();
   res.redirect("/")
 })
 
 app.get("/author",(req,res)=>{
-    res.render("author");
+  Post.find({_author: "swayam"},(err,posts)=>{
+    res.render("author",{posts:posts});
+
+  })
 })
 app.get("/post",(req,res)=>{
     res.render("post",{author:"author",title:"title",poster:"post"});
