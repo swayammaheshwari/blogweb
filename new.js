@@ -23,8 +23,15 @@ const blogSchema = {
   date: Date
 }
 
+const contactSchema = {
+  name: String,
+  email: String,
+  message: String
+}
+
 const Post = mongoose.model("Post", blogSchema);
 const Line = mongoose.model("line", blogSchema);
+const Contact = mongoose.model("contact", contactSchema);
 
 app.get("/",(req,res)=>{
   Post.find({}, function(err, posts){
@@ -82,6 +89,22 @@ app.get("/post/:postId", function(req, res){
 
 app.get("/compose",(req,res)=>{
     res.render("compose");
+})
+
+
+app.get("/Contact",(req,res)=>{
+    res.render("Contact Us");
+})
+
+
+app.post("/Contact",(req,res)=>{
+  const contact = new Contact({
+     name: req.body.name,
+     email:req.body.email,
+     message: req.body.message
+  })
+  contact.save()
+    res.redirect("/");
 })
 
 
